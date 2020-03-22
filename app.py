@@ -6,7 +6,11 @@ import flask
 import logging
 logging.basicConfig(level=logging.INFO)
 
-img_path = str(pathlib.Path("static", "plots").absolute())
+plots_path = pathlib.Path("static", "plots")
+if not plots_path.exists():
+    plots_path.mkdir()
+
+img_path = str(plots_path)
 
 app = flask.Flask(__name__)
 gw = antimait.Gateway()
